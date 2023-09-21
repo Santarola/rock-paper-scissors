@@ -6,9 +6,10 @@ function getComputerChoice() {
     return choice;
 }
 
-function game (playerSelection, computerSelection) {
-    
-        function playRound() {
+function game(playerSelection, computerSelection) {
+
+        computerSelection = getComputerChoice();
+        // console.log(`Round ${i+1}! ${game()}`);
 
         playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
         
@@ -31,14 +32,36 @@ function game (playerSelection, computerSelection) {
         else {
             return `You lose! ${computerSelection} beats ${playerSelection}`;
         }
-    }
 
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Rock, Paper or Scissors?", "Scissors");
-        computerSelection = getComputerChoice();
-        console.log(`Round ${i+1}! ${playRound()}`);
-    }
+   
 }
+
+const btnRock = document.getElementById('rock');
+const btnScissors = document.getElementById('scissors');
+const btnPaper = document.getElementById('paper');
+
+const results = document.querySelector('#results');
+
+const para = document.createElement('p');
+results.appendChild(para);
+
 let computerSelection;
 let playerSelection;
-console.log(game(playerSelection, computerSelection));
+
+btnRock.addEventListener('click', () => {
+    playerSelection = "Rock";
+    computerSelection = getComputerChoice();
+    para.textContent = game(playerSelection, computerSelection);
+});
+
+btnScissors.addEventListener('click', () => {
+    playerSelection = "Scissors";
+    computerSelection = getComputerChoice();
+    para.textContent = game(playerSelection, computerSelection);
+});
+
+btnPaper.addEventListener('click', () => {
+    playerSelection = "Paper";
+    computerSelection = getComputerChoice();
+    para.textContent = game(playerSelection, computerSelection);
+});
